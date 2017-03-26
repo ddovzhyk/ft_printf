@@ -25,7 +25,6 @@ void			clear_struct(t_print *pr);
 void			check_modificator(char **str, va_list f, t_print *print);
 void			check_spec_char(char **str, va_list f, t_print *print);
 void			specif(va_list f, char *sp, t_print *pr);
-int				precision(va_list f, char **tmp);
 void			length(char *tmp, char **size);
 void			flag(char tmp, t_print *pr);
 void			add_zeros_nbr(char **num, t_print *pr);

@@ -45,30 +45,6 @@ unsigned int	ft_atou(char **str)
 	return (res);
 }
 
-int				precision(va_list f, char **tmp)
-{
-	int	res;
-
-	res = -1;
-	if (**tmp == '.')
-	{
-		if (ft_isdigit(*(*tmp + 1)))
-		{
-			(*tmp)++;
-			res = ft_atou(tmp);
-		}
-		else if (*(*tmp + 1) == '*')
-		{
-			(*tmp)++;
-			res = va_arg(f, int);
-			(res < 0) ? res = -1 : 0;
-		}
-		else
-			res = 0;
-	}
-	return (res);
-}
-
 void			length(char *tmp, char **size)
 {
 	if (*tmp == 'h' && **size != 'l' && **size != 'j' && **size != 'z')

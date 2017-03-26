@@ -28,7 +28,12 @@ void	check_modificator(char **str, va_list f, t_print *print)
 			}
 		}
 		else if (**str == '.')
-			print->prec = precision(f, str);
+		{
+			(*str)++;
+			print->prec = (**str == '*') ? va_arg(f, int) : ft_atou(str);
+			if (print->prec < 0)
+				print->prec = -1;
+		}
 		else if (is_length(**str))
 			length(*str, &print->size);
 }
