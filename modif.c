@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 void	clear_struct(t_print *pr)
 {
@@ -19,6 +19,7 @@ void	clear_struct(t_print *pr)
 	pr->space = 0;
 	pr->hash = 0;
 	pr->zero = 0;
+	pr->dollar = 0;
 	pr->size = "";
 	pr->prec = -1;
 	pr->width = 0;

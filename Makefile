@@ -12,7 +12,7 @@
 
 NAME = libftprintf.a
 FLAGS = -Wextra -Wall -Werror
-INCLUDES = -I .
+INCLUDES = -I . -I ./libft
 OBJECTS = 							\
 			./ft_printf.o			\
 			./modif.o				\

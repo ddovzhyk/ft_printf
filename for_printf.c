@@ -10,10 +10,16 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
-void			specif(va_list f, char *sp, t_print *pr)
+void			specif(va_list f, char *sp, t_print *pr, va_list start)
 {
+	if (pr->dollar != 0)
+	{
+		va_copy(f, start);
+		while (pr->dollar-- > 1)
+			va_arg(f, void *);
+	}
 	if (*sp == 'n')
 		specif_n(f, *pr);
 	else if (*sp == 'c' || *sp == 'C')
@@ -65,4 +71,33 @@ void			flag(char tmp, t_print *pr)
 	(tmp == ' ') ? pr->space = 1 : 0;
 	(tmp == '#') ? pr->hash = 1 : 0;
 	(tmp == '0') ? pr->zero = 1 : 0;
+}
+
+void			width(char **str, va_list f, t_print *print)
+{
+	if (**str != '*')
+	{
+		print->dollar = ft_atou(str);
+		if (*(*str + 1) != '$')
+		{
+			print->width = print->dollar;
+			print->dollar = 0;
+		}
+		else
+			(*str)++;
+	}
+	else
+	{
+		(*(*str + 1) != '$') ? print->width = va_arg(f, int) : 0;
+		if (*(*str + 1) == '$')
+		{
+			print->dollar = 1;
+			(*str)++;
+		}
+	}
+	if (print->width < 0)
+	{
+		print->width *= (print->width == -2147483648) ? 0 : -1;
+		print->hyphen = 1;
+	}
 }

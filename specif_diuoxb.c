@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
-int	num_is_zero(char *num)
+int			num_is_zero(char *num)
 {
 	while (*num)
 	{

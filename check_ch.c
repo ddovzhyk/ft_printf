@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 void	check_modificator(char **str, va_list f, t_print *print)
 {
@@ -19,31 +19,22 @@ void	check_modificator(char **str, va_list f, t_print *print)
 		if (is_flag(**str))
 			flag(**str, print);
 		else if ((**str != '0' && ft_isdigit(**str)) || **str == '*')
-		{
-			print->width = (**str == '*') ? va_arg(f, int) : ft_atou(str);
-			if (print->width < 0)
-			{
-				print->width *= (print->width == -2147483648) ? 0 : -1;
-				print->hyphen = 1;
-			}
-		}
+			width(str, f, print);
 		else if (**str == '.')
 		{
-			(*str)++;
-			print->prec = (**str == '*') ? va_arg(f, int) : ft_atou(str);
-			if (print->prec < 0)
-				print->prec = -1;
+			print->prec = (*(++(*str)) == '*') ? va_arg(f, int) : ft_atou(str);
+			(print->prec < 0) ? print->prec = -1 : 0;
 		}
 		else if (is_length(**str))
 			length(*str, &print->size);
 }
 
-void	check_spec_char(char **str, va_list f, t_print *print)
+void	check_spec_char(char **str, va_list f, t_print *print, va_list start)
 {
 	char *tmp;
 
 	if (is_specif(**str))
-		specif(f, *str, print);
+		specif(f, *str, print, start);
 	else if (**str)
 	{
 		tmp = ft_strsub(*str, 0, 1);
