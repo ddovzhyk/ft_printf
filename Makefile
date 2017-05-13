@@ -10,6 +10,8 @@
 #                                                                              #
 # **************************************************************************** #
 
+.PHONY: libft.a
+
 NAME = libftprintf.a
 FLAGS = -Wextra -Wall -Werror
 LIBOBJ = ./libft/*.o
