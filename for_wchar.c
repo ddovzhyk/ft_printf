@@ -16,7 +16,7 @@ short	size_char(int c)
 {
 	if (c < 0)
 		return (0);
-	else if (c < 256)
+	else if (c < 128)
 		return (1);
 	else if (c < 2048)
 		return (2);
