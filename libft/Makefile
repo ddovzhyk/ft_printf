@@ -88,8 +88,8 @@ $(NAME) : $(OBJECTS)
 %.o : %.c
 	gcc $(FLAGS) -o $@ -c $< $(INCLUDES)
 clean :
-	rm -rf $(OBJECTS)
-	rm -rf *.c~
+	rm -f $(OBJECTS)
+	rm -f *.c~
 fclean : clean
-	rm -rf $(NAME)
+	rm -f $(NAME)
 re : fclean all

@@ -82,7 +82,7 @@ void		specif_di_ld(va_list f, t_print *pr, char sp)
 
 static void	for_specif_uoxb(char *res, char sp, t_print *pr)
 {
-	(pr->apostrophe == 1) ? flag_apostrophe(&res) : 0;
+	(pr->apostrophe == 1 && sp == 'u') ? flag_apostrophe(&res) : 0;
 	if (num_is_zero(res) && (pr->prec == 0 || (sp == 'o' && pr->prec == 1)))
 		*res = '\0';
 	if (pr->hash == 1 && sp == 'o' && (pr->prec > -1 || *res != '0'))
